@@ -1,0 +1,337 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*==============================
+  Root Colors
+==============================*/
+:root {
+  /* Brand Colors */
+  --color-primary: 78, 166, 169; /* #4ea6a9 */
+  --color-primary-light: 111, 193, 195; /* lighter shade */
+  --color-primary-dark: 61, 133, 135; /* darker shade */
+
+  /* Light Theme */
+  --foreground-rgb: 31, 41, 55; /* dark text */
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 248, 249, 250;
+
+  /* Neutral Colors */
+  --text-muted: 107, 114, 128;
+  --surface-light: 248, 249, 250; /* card bg */
+  --border-light: 229, 231, 235;  /* border color */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Theme */
+    --foreground-rgb: 224, 224, 224;
+    --background-start-rgb: 18, 18, 18;
+    --background-end-rgb: 30, 30, 30;
+
+    --text-muted: 156, 163, 175;
+    --surface-light: 30, 30, 30;
+    --border-light: 51, 51, 51;
+  }
+}
+
+/*==============================
+  Body & Text
+==============================*/
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  font-family: var(--font-Poppins), sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/*==============================
+  Scrollbar Styling
+==============================*/
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-primary-dark)); /* Darker primary track */
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--color-primary-light), 0.6);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--color-primary), 0.9);
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Remove spin buttons in number input (Webkit) */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*==============================
+  Gradients & Text Effects
+==============================*/
+.text-gradient {
+  background: linear-gradient(90deg, #4ea6a9 0%, #6fc1c3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+}
+
+.hero_animation {
+  background-image: linear-gradient(
+    147.92deg,
+    rgba(78, 166, 169, 0.45) 10.41%,
+    rgba(255, 255, 255, 0) 89.25%
+  );
+  animation: changeBackgroundColor 8s infinite alternate;
+}
+
+/*==============================
+  Animations
+==============================*/
+@keyframes changeBackgroundColor {
+  0%, 100% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  75% {
+    opacity: 0.55;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-2px);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  60% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/*==============================
+  Hero Starfield (Multi-Layer Parallax + Twinkle)
+==============================*/
+.stars, .stars2, .stars3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/*------------------------------
+  Star Glow & Shape
+------------------------------*/
+.stars::before,
+.stars2::before,
+.stars3::before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: #4ea6a9;
+  /* Twinkle animation */
+  animation: starTwinkle 3s infinite ease-in-out alternate;
+}
+
+/*------------------------------
+  NEAR Layer (Largest, Fastest)
+------------------------------*/
+.stars::before {
+  width: 5px;
+  height: 5px;
+  box-shadow:
+    50px 80px #4ea6a9,
+    120px 200px #6ccfce,
+    200px 320px #4ea6a9,
+    280px 150px #6ccfce,
+    360px 400px #4ea6a9,
+    450px 250px #6ccfce,
+    540px 100px #4ea6a9,
+    640px 350px #6ccfce,
+    720px 200px #4ea6a9,
+    820px 120px #6ccfce,
+    920px 280px #4ea6a9,
+    1020px 350px #6ccfce,
+    1120px 150px #4ea6a9,
+    1220px 400px #6ccfce,
+    1320px 250px #4ea6a9,
+    1420px 100px #6ccfce,
+    1520px 300px #4ea6a9,
+    1620px 180px #6ccfce,
+    1720px 350px #4ea6a9,
+    1820px 120px #6ccfce;
+  animation: starDriftUp 60s linear infinite, starTwinkle 3s infinite ease-in-out alternate;
+}
+
+/*------------------------------
+  MID Layer (Medium Size, Medium Speed)
+------------------------------*/
+.stars2::before {
+  width: 4px;
+  height: 4px;
+  box-shadow:
+    80px 160px #6ccfce,
+    180px 280px #4ea6a9,
+    260px 100px #6ccfce,
+    340px 360px #4ea6a9,
+    420px 240px #6ccfce,
+    520px 400px #4ea6a9,
+    600px 180px #6ccfce,
+    700px 320px #4ea6a9,
+    820px 90px #6ccfce,
+    920px 270px #4ea6a9,
+    1020px 200px #6ccfce,
+    1120px 350px #4ea6a9,
+    1220px 140px #6ccfce,
+    1320px 420px #4ea6a9,
+    1420px 300px #6ccfce,
+    1520px 180px #4ea6a9,
+    1620px 90px #6ccfce,
+    1720px 250px #4ea6a9,
+    1820px 400px #6ccfce,
+    1920px 220px #4ea6a9;
+  animation: starDriftDiagonal2 90s linear infinite, starTwinkle 4s infinite ease-in-out alternate;
+}
+
+/*------------------------------
+  FAR Layer (Smallest, Slowest)
+------------------------------*/
+.stars3::before {
+  width: 3px;
+  height: 3px;
+  box-shadow:
+    100px 200px #4ea6a9,
+    220px 400px #6ccfce,
+    340px 250px #4ea6a9,
+    460px 100px #6ccfce,
+    580px 350px #4ea6a9,
+    700px 150px #6ccfce,
+    820px 320px #4ea6a9,
+    940px 180px #6ccfce,
+    1060px 400px #4ea6a9,
+    1180px 250px #6ccfce,
+    1300px 120px #4ea6a9,
+    1420px 300px #6ccfce,
+    1540px 200px #4ea6a9,
+    1660px 380px #6ccfce,
+    1780px 150px #4ea6a9;
+  animation: starDriftRightTop 120s linear infinite, starTwinkle 5s infinite ease-in-out alternate;
+}
+
+/*==============================
+  Twinkle Animation
+==============================*/
+@keyframes starTwinkle {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.8);
+    filter: drop-shadow(0 0 1px #6ccfce);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+    filter: drop-shadow(0 0 6px #4ea6a9);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(0.8);
+    filter: drop-shadow(0 0 1px #6ccfce);
+  }
+}
+
+/*==============================
+  Parallax Animations (Multi-Direction)
+==============================*/
+@keyframes starDriftUp { from {transform: translateY(0);} to {transform: translateY(-1000px);} }
+@keyframes starDriftRightTop { from {transform: translate(0,0);} to {transform: translate(1000px,-1000px);} }
+@keyframes starDriftDiagonal2 { from {transform: translate(0,0);} to {transform: translate(1000px,1000px);} }
+
+/*==============================
+  Theme Adjustments
+==============================*/
+.stars::before,
+.stars2::before,
+.stars3::before {
+  opacity: 0.85;
+}
+
+.dark .stars::before,
+.dark .stars2::before,
+.dark .stars3::before {
+  opacity: 1;
+  filter: drop-shadow(0 0 3px rgba(78,166,169,0.8));
+}
+
+
+/*==============================
+  Utility Classes
+==============================*/
+.card {
+  background-color: rgb(var(--surface-light));
+  border: 1px solid rgb(var(--border-light));
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.btn-primary {
+  background-color: rgb(var(--color-primary));
+  color: #fff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: rgb(var(--color-primary-light));
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  background-color: rgb(var(--color-primary-dark));
+  transform: translateY(0);
+}
+
+
+
+* {
+  transition: background-color 0.9s ease, color 0.3s ease, border-color 0.3s ease;
+}
