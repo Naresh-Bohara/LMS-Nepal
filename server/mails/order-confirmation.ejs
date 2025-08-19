@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmation - LMS Nepal</title>
+  <style>
+    /* Global Reset & Base */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #f5f9fb;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e5e9f0;
+    }
+
+    /* Header */
+    .header {
+      background: #6abfc1;
+      text-align: center;
+      padding: 30px 20px;
+      color: #ffffff;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    .header p {
+      margin: 6px 0 0;
+      font-size: 16px;
+      opacity: 0.95;
+    }
+
+    /* Body Section */
+    .body {
+      padding: 30px 25px;
+    }
+    .body h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #6abfc1;
+      font-weight: 600;
+    }
+
+    /* Order Info Box */
+    .order-info {
+      background: #eef9f9;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+    .order-info p {
+      margin: 6px 0;
+    }
+    .order-info strong {
+      color: #6abfc1;
+    }
+
+    /* Items Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px;
+      font-size: 15px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    th {
+      background: #f0f7f8;
+      color: #6abfc1;
+      font-weight: 600;
+    }
+    td {
+      color: #555;
+    }
+    .total-row td {
+      border-top: 2px solid #6abfc1;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .footer {
+      background: #f8fafc;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #777;
+    }
+    .footer a {
+      color: #6abfc1;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 600px) {
+      .body {
+        padding: 20px 15px;
+      }
+      .header h1 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>Your LMS-Nepal Order is Confirmed!</h1>
+      <p>We’re excited to have you on board.</p>
+    </div>
+
+    <!-- Body -->
+    <div class="body">
+      <h2>Order Summary</h2>
+
+      <!-- Order Info -->
+      <div class="order-info">
+        <p><strong>Order #:</strong> <%= order._id %></p>
+        <p><strong>Order Date:</strong> <%= order.date %></p>
+      </div>
+
+      <!-- Items Table -->
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= order.name %></td>
+            <td>1</td>
+            <td>NRS <%= order.price %></td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2">Total</td>
+            <td>NRS <%= order.price %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Need help? Contact us at 
+        <a href="mailto:support@lmsnepal.com">support@lmsnepal.com</a>
+      </p>
+      <p>© <%= new Date().getFullYear() %> LMS-Nepal. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>

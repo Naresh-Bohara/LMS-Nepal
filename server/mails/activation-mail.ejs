@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LMS-Nepal Activation Email</title>
+  <style>
+    /* Base Reset & Typography */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      font-size: 16px;
+      background-color: #f5f9fb;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    /* Container */
+    .email-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      border: 1px solid #e3e8ed;
+    }
+
+    /* Header */
+    .email-header {
+      background: linear-gradient(135deg, #6abfc1, #4ea6a9);
+      text-align: center;
+      padding: 32px 20px;
+      color: #ffffff;
+    }
+    .email-header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* Body */
+    .email-body {
+      padding: 30px 25px;
+    }
+    .email-body p {
+      margin-bottom: 18px;
+      color: #555;
+    }
+    .email-body h2 {
+      font-size: 28px;
+      text-align: center;
+      color: #4ea6a9;
+      margin: 30px 0 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-block;
+      background-color: #6abfc1;
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-align: center;
+      font-size: 16px;
+      margin: 20px auto;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #57a8ab;
+    }
+
+    /* Divider */
+    .divider {
+      border-top: 1px solid #e5e5e5;
+      margin: 30px 0;
+    }
+
+    /* Footer */
+    .email-footer {
+      background: #f8fafc;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #777;
+    }
+    .email-footer a {
+      color: #6abfc1;
+      font-weight: 600;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 600px) {
+      .email-body {
+        padding: 20px 15px;
+      }
+      .email-body h2 {
+        font-size: 24px;
+      }
+      .btn {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <!-- Header -->
+    <div class="email-header">
+      <h1>Welcome to LMS-Nepal</h1>
+    </div>
+
+    <!-- Body -->
+    <div class="email-body">
+      <p>Hello <strong><%= user.name %></strong>,</p>
+      <p>Thank you for registering with <strong>LMS-Nepal</strong>! To activate your account, please use the activation code below:</p>
+
+      <h2><%= activationCode %></h2>
+
+      <p style="text-align: center">
+        <a href="https://lmsnepal.com/activate" class="btn">Activate Account</a>
+      </p>
+
+      <div class="divider"></div>
+
+      <p style="text-align: center; font-size: 14px; color: #888;">
+        This code will expire in 5 minutes. If you didn’t sign up for LMS-Nepal, you can ignore this email.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="email-footer">
+      <p>
+        Need help? Contact us at 
+        <a href="mailto:support@lmsnepal.com">support@lmsnepal.com</a>
+      </p>
+      <p>© <%= new Date().getFullYear() %> LMS-Nepal. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>
