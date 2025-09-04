@@ -126,15 +126,15 @@ export const getSingleCourse = CatchAsyncError(
         };
       };
 
-      // Try to get from cache
-      const cachedData = await redis.get(courseId);
-      if (cachedData) {
-        const cachedCourse = sanitizeCourse(JSON.parse(cachedData));
-        return res.status(200).json({
-          success: true,
-          course: cachedCourse,
-        });
-      }
+      // // Try to get from cache
+      // const cachedData = await redis.get(courseId);
+      // if (cachedData) {
+      //   const cachedCourse = sanitizeCourse(JSON.parse(cachedData));
+      //   return res.status(200).json({
+      //     success: true,
+      //     course: cachedCourse,
+      //   });
+      // }
 
       // Fetch from DB with select (exclude sensitive fields)
       const course = await CourseModel.findById(courseId).select(
@@ -167,16 +167,16 @@ export const getAllCourses = CatchAsyncError(
     try {
       const cacheKey = "allCourses";
 
-      // Check Redis cache
-      const cachedData = await redis.get(cacheKey);
-      if (cachedData) {
-        return res.status(200).json({
-          success: true,
-          count: JSON.parse(cachedData).length,
-          courses: JSON.parse(cachedData),
-          fromCache: true,
-        });
-      }
+      // // Check Redis cache
+      // const cachedData = await redis.get(cacheKey);
+      // if (cachedData) {
+      //   return res.status(200).json({
+      //     success: true,
+      //     count: JSON.parse(cachedData).length,
+      //     courses: JSON.parse(cachedData),
+      //     fromCache: true,
+      //   });
+      // }
 
       // Fetch from DB
       const courses = await CourseModel.find().select(
@@ -201,7 +201,6 @@ export const getAllCourses = CatchAsyncError(
     }
   }
 );
-
 
 
 // get course content -- only for valid user
@@ -234,6 +233,7 @@ export const getCourseByUser = CatchAsyncError(
     }
   }
 );
+
 
 // add question in course
 interface IAddQuestionData {

@@ -1,5 +1,6 @@
 import { styles } from "@/app/styles/style";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type Review = {
@@ -22,7 +23,6 @@ const Star = ({ filled }: { filled: boolean }) => (
   </svg>
 );
 
-// RatingStars now positioned absolutely top-right inside card
 const RatingStars = ({ rating = 5 }: { rating?: number }) => {
   const stars = Array.from({ length: 5 }, (_, i) => i < rating);
   return (
@@ -59,27 +59,19 @@ const reviews: Review[] = [
       "LMS-Nepal provides quality content that’s perfect for self-learners. I loved the project-based approach and the real-world examples.",
     rating: 5,
   },
-  {
-    name: "Bikash Thapa",
-    avatar: "https://randomuser.me/api/portraits/men/28.jpg",
-    profession: "MERN Stack Developer | Startup Nepal",
+   {
+    name: "Sneha Koirala",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    profession: "Computer Engineering Student | TU",
     comment:
-      "Very professional content and clean UI. I especially liked the MERN stack section — practical and up-to-date.",
-    rating: 5,
-  },
-  {
-    name: "Priya Joshi",
-    avatar: "https://randomuser.me/api/portraits/women/29.jpg",
-    profession: "IT Graduate | Kathmandu University",
-    comment:
-      "One of the best learning experiences I've had online. Everything is well explained, and the support from the team is awesome!",
-    rating: 5,
+      "LMS-Nepal provides quality content that’s perfect for self-learners. I loved the project-based approach and the real-world examples.",
+    rating: 2,
   },
 ];
 
 const Reviews = () => {
   return (
-    <div className="w-[92%] 800px:w-[85%] m-auto">
+    <div className="w-[92%] 800px:w-[85%] m-auto py-16">
       {/* Header Section */}
       <div className="w-full 800px:flex items-center mb-16 gap-8">
         <div className="800px:w-[50%] w-full rounded-2xl shadow-xl overflow-hidden">
@@ -118,21 +110,28 @@ const Reviews = () => {
             </div>
 
             <div className="flex items-center gap-4 mb-3">
-              <img
-                src={item.avatar}
-                alt={item.name}
-                className="w-14 h-14 rounded-full object-cover border-[3px] border-cyan-400"
-                loading="lazy"
-              />
+              <Link href="https://naresh-bohara.com.np" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={item.avatar}
+                  alt={item.name}
+                  width={56}
+                  height={56}
+                  className="rounded-full border-[3px] border-cyan-400 object-cover"
+                  unoptimized
+                />
+              </Link>
               <div>
-                <h4 className="font-semibold text-[17px] text-gray-800 dark:text-white">
-                  {item.name}
-                </h4>
+                <Link href="https://naresh-bohara.com.np" target="_blank" rel="noopener noreferrer">
+                  <h4 className="font-semibold text-[17px] text-gray-800 dark:text-white hover:underline">
+                    {item.name}
+                  </h4>
+                </Link>
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   {item.profession}
                 </span>
               </div>
             </div>
+
             <p className="text-gray-700 dark:text-gray-300 text-[15px] leading-relaxed">
               {item.comment}
             </p>

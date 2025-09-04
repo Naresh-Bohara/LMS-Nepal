@@ -81,10 +81,13 @@ const CoursePreview: FC<Props> = ({
 
             {/* Features */}
             <div className="mt-5 space-y-2 text-gray-700 dark:text-gray-300 text-sm">
-              <p>• Source code included</p>
-              <p>• Full lifetime access</p>
-              <p>• Certificate of completion</p>
-              <p>• Premium support</p>
+          <p>• Source code included</p>
+          <p>• Lifetime access</p>
+          <p>• Premium support</p>
+          <p>• Practical projects</p>
+          <p>• Interactive learning</p>
+          <p>• User-friendly interface</p>
+
             </div>
           </div>
         </div>

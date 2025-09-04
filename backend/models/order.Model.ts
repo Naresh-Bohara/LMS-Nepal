@@ -5,6 +5,7 @@ export interface IOrder extends Document{
     courseId: string;
     userId?:string;
     payment_info: object;
+    transaction_uuid?: string;
 }
 
 const orderSchema = new Schema<IOrder>({
@@ -20,6 +21,7 @@ const orderSchema = new Schema<IOrder>({
         type: Object,
         // required: true
     },
+    
 },{timestamps: true});
 
 const OrderModel: Model<IOrder> = mongoose.model('Order',orderSchema);

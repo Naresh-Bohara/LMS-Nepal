@@ -16,43 +16,34 @@ const About = () => {
 
       <article className="prose prose-lg dark:prose-invert mx-auto max-w-none">
         <p>
-          Welcome to <strong>LMS-Nepal</strong> — a modern, intuitive, and
-          comprehensive Learning Management System built specifically for
-          students, educators, and institutions in Nepal. Our mission is to
-          empower learners by providing easy access to quality education
-          anytime, anywhere.
+          Welcome to <strong>LMS-Nepal</strong>, a modern and intuitive
+          Learning Management System designed for students, educators, and
+          institutions across Nepal. Our goal is to make learning accessible,
+          flexible, and engaging for everyone.
         </p>
 
         <p>
-          At LMS-Nepal, we understand the unique challenges faced by learners
-          across Nepal, from urban centers to remote villages. That’s why our
-          platform offers a diverse range of courses designed to be accessible,
-          affordable, and tailored to meet your educational needs.
-        </p>
-
-        <p>
-          Our features include:
+          LMS-Nepal provides a rich learning environment with:
           <ul className="list-disc list-inside mt-2 mb-4">
-            <li>Interactive video lectures and course materials</li>
-            <li>Real-time quizzes, assignments, and assessments</li>
-            <li>Community discussion forums and peer collaboration</li>
-            <li>Progress tracking and personalized learning paths</li>
-            <li>Certificates of completion to showcase your achievements</li>
+            <li>High-quality video lectures and course materials</li>
+            <li>Extensive resources for deeper learning</li>
+            <li>Q&A sections to ask questions and clarify doubts</li>
+            <li>Community-driven discussions and collaboration</li>
+            <li>Tools to track your learning progress</li>
           </ul>
         </p>
 
         <p>
-          Beyond technology, LMS-Nepal is a vibrant community that nurtures
-          curiosity and growth. Whether you're a student aiming to improve your
-          skills, a teacher looking to share knowledge, or an institution
-          wanting to digitize your courses, LMS-Nepal is here to support you
-          every step of the way.
+          Whether you are a student wanting to improve your skills, a teacher
+          looking to share knowledge, or an institution aiming to digitize
+          courses, LMS-Nepal provides the tools and community to support your
+          learning journey.
         </p>
 
         <p>
-          Join thousands of learners who have already discovered the power of
-          accessible education through LMS-Nepal. Together, we’re building a
-          brighter future for education in Nepal — one course at a time.
+          Join thousands of learners across Nepal and experience the power of
+          accessible education with LMS-Nepal. Together, we are creating a
+          smarter, connected, and empowered learning community.
         </p>
 
         <footer className="mt-12 text-center">

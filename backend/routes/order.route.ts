@@ -3,22 +3,22 @@ import { authorizeRoles, isAutheticated } from "../middleware/auth";
 import {
   createOrder,
   getAllOrders,
-  newPayment,
-  sendStripePublishableKey,
+  initiateEsewaPayment,
+  verifyEsewaPayment,
 } from "../controllers/order.controller";
-const orderRouter = express.Router();
 
+const orderRouter = express.Router(); 
+
+// Create order after successful eSewa payment
 orderRouter.post("/create-order", isAutheticated, createOrder);
 
-orderRouter.get(
-  "/get-orders",
-  isAutheticated,
-  authorizeRoles("admin"),
-  getAllOrders
-);
+// Get all orders - admin only
+orderRouter.get("/get-orders", isAutheticated, authorizeRoles("admin"), getAllOrders);
 
-orderRouter.get("/payment/stripepublishablekey", sendStripePublishableKey);
+// Initiate eSewa payment
+orderRouter.post("/initiate-payment", isAutheticated, initiateEsewaPayment);
 
-orderRouter.post("/payment", isAutheticated, newPayment);
+// Verify eSewa payment
+orderRouter.post("/verify-payment", isAutheticated, verifyEsewaPayment);
 
 export default orderRouter;

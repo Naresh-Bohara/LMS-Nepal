@@ -31,7 +31,7 @@ const SideBarProfile: FC<Props> = ({
     if (isLoggingOut) return;
 
     setIsLoggingOut(true);
-    
+
     try {
       // Show loading toast
       const toastId = toast.loading(
@@ -58,8 +58,18 @@ const SideBarProfile: FC<Props> = ({
       // Update toast to success
       toast.success(
         <div className="flex items-center gap-2">
-          <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+          <svg
+            className="w-5 h-5 text-green-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M5 13l4 4L19 7"
+            />
           </svg>
           <span>Logged out successfully!</span>
         </div>,
@@ -81,13 +91,22 @@ const SideBarProfile: FC<Props> = ({
       setTimeout(() => {
         router.replace("/");
       }, 500);
-      
     } catch (error) {
       console.error("Logout failed:", error);
       toast.error(
         <div className="flex items-center gap-2">
-          <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <svg
+            className="w-5 h-5 text-red-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
           </svg>
           <span>Logout failed. Please try again.</span>
         </div>,
@@ -148,18 +167,20 @@ const SideBarProfile: FC<Props> = ({
         </h5>
       </div>
 
-      {/* Enrolled Courses */}
-      <div
-        className={`w-full flex items-center px-3 py-4 cursor-pointer transition-colors ${
-          active === 3 ? "dark:bg-slate-800 bg-white" : "bg-transparent"
-        } ${isLoggingOut ? "pointer-events-none opacity-80" : ""}`}
-        onClick={() => setActive(3)}
-      >
-        <SiCoursera size={20} className="dark:text-white text-black" />
-        <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
-          Enrolled Courses
-        </h5>
-      </div>
+      {/* Enrolled Courses (only for non-admin users) */}
+      {user?.role !== "admin" && (
+        <div
+          className={`w-full flex items-center px-3 py-4 cursor-pointer transition-colors ${
+            active === 3 ? "dark:bg-slate-800 bg-white" : "bg-transparent"
+          } ${isLoggingOut ? "pointer-events-none opacity-80" : ""}`}
+          onClick={() => setActive(3)}
+        >
+          <SiCoursera size={20} className="dark:text-white text-black" />
+          <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
+            Enrolled Courses
+          </h5>
+        </div>
+      )}
 
       {/* Admin Dashboard */}
       {user?.role === "admin" && (
@@ -184,8 +205,8 @@ const SideBarProfile: FC<Props> = ({
         className={`w-full flex items-center px-3 py-4 cursor-pointer transition-colors ${
           active === 4 ? "dark:bg-slate-800 bg-white" : "bg-transparent"
         } ${
-          isLoggingOut 
-            ? "cursor-wait opacity-90 dark:bg-slate-800/80 bg-white/80" 
+          isLoggingOut
+            ? "cursor-wait opacity-90 dark:bg-slate-800/80 bg-white/80"
             : "hover:bg-gray-100 dark:hover:bg-slate-700"
         } relative`}
         onClick={handleLogout}

@@ -6,7 +6,7 @@ import { ThemeProvider } from "./utils/theme-provider";
 import { Toaster } from "react-hot-toast";
 import { Providers } from "./Provider";
 import { SessionProvider } from "next-auth/react";
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 import Loader from "./components/Loader/Loader";
 import socketIO from "socket.io-client";
@@ -29,11 +29,12 @@ const josefin = Josefin_Sans({
 });
 
 // ===== Root Layout =====
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+
+  // Only render ThemeProvider on client
+  useEffect(() => setMounted(true), []);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -49,25 +50,25 @@ export default function RootLayout({
       >
         <Providers>
           <SessionProvider>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <AppWrapper>{children}</AppWrapper>
-
-              {/* Premium Toaster */}
-              <Toaster
-                position="top-center"
-                toastOptions={{
-                  style: {
-                    background: "linear-gradient(to right, #6abfc1, #5aa8a9)",
-                    color: "#fff",
-                    fontWeight: 500,
-                    borderRadius: "10px",
-                    padding: "12px 18px",
-                    boxShadow:
-                      "0 4px 15px rgba(0,0,0,0.2), 0 2px 8px rgba(106,191,193,0.3)",
-                  },
-                }}
-              />
-            </ThemeProvider>
+            {mounted ? (
+              <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                <AppWrapper>{children}</AppWrapper>
+                <Toaster
+                  position="top-center"
+                  toastOptions={{
+                    style: {
+                      background: "linear-gradient(to right, #6abfc1, #5aa8a9)",
+                      color: "#fff",
+                      fontWeight: 500,
+                      borderRadius: "10px",
+                      padding: "12px 18px",
+                      boxShadow:
+                        "0 4px 15px rgba(0,0,0,0.2), 0 2px 8px rgba(106,191,193,0.3)",
+                    },
+                  }}
+                />
+              </ThemeProvider>
+            ) : null}
           </SessionProvider>
         </Providers>
       </body>
@@ -80,23 +81,10 @@ const AppWrapper: FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isLoading } = useLoadUserQuery({});
 
   useEffect(() => {
-    if (!ENDPOINT) {
-      console.warn("Socket server URI not set in environment variables.");
-      return;
-    }
-
-    // Handle socket connection
-    socket.on("connect", () => {
-      console.log("Socket connected:", socket.id);
-    });
-
-    socket.on("disconnect", () => {
-      console.log("Socket disconnected");
-    });
-
-    return () => {
-      socket.disconnect();
-    };
+    if (!ENDPOINT) return console.warn("Socket server URI not set.");
+    socket.on("connect", () => console.log("Socket connected:", socket.id));
+    socket.on("disconnect", () => console.log("Socket disconnected"));
+    return () => socket.disconnect();
   }, []);
 
   return isLoading ? (

@@ -32,9 +32,13 @@ const CourseContentList: FC<Props> = (props) => {
   };
 
   return (
-    <div className={`mt-[15px] w-full ${!props.isDemo && 'ml-[-30px] min-h-screen sticky top-24 left-0 z-30'}`}>
-      {videoSections.map((section: string, sectionIndex: number) => {
-
+    <div
+      className={`mt-[15px] w-full ${
+        !props.isDemo &&
+        "ml-[-30px] min-h-screen sticky top-24 left-0 z-30"
+      }`}
+    >
+      {videoSections.map((section: string) => {
         const isSectionVisible = visibleSections.has(section);
 
         // Filter videos by section
@@ -42,70 +46,92 @@ const CourseContentList: FC<Props> = (props) => {
           (item: any) => item.videoSection === section
         );
 
-        const sectionVideoCount: number = sectionVideos.length; // Number of videos in the current section
+        const sectionVideoCount: number = sectionVideos.length;
         const sectionVideoLength: number = sectionVideos.reduce(
           (totalLength: number, item: any) => totalLength + item.videoLength,
           0
         );
-        const sectionStartIndex: number = totalCount; // Start index of videos within the current section
-        totalCount += sectionVideoCount; // Update the total count of videos
+        const sectionStartIndex: number = totalCount;
+        totalCount += sectionVideoCount;
 
         const sectionContentHours: number = sectionVideoLength / 60;
 
         return (
-          <div className={`${!props.isDemo && 'border-b border-[#0000001c] dark:border-[#ffffff8e] pb-2'}`} key={section}>
-            <div className="w-full flex">
-              {/* Render video section */}
-              <div className="w-full flex justify-between items-center"
+          <div
+            className={`${
+              !props.isDemo &&
+              "border-b border-[#0000001c] dark:border-[#ffffff4d] pb-2"
+            }`}
+            key={section}
+          >
+            <div className="w-full flex justify-between items-center">
+              <h2 className="text-[20px] font-semibold text-black dark:text-white">
+                {section}
+              </h2>
+              <button
+                className="mr-4 cursor-pointer text-black dark:text-white"
+                onClick={() => toggleSection(section)}
               >
-                <h2 className="text-[22px] text-black dark:text-white">{section}</h2>
-                <button
-                  className="mr-4 cursor-pointer text-black dark:text-white"
-                  onClick={() => toggleSection(section)}
-                >
-                  {isSectionVisible ? (
-                    <BsChevronUp size={20} />
-                  ) : (
-                    <BsChevronDown size={20} />
-                  )}
-                </button>
-              </div>
+                {isSectionVisible ? (
+                  <BsChevronUp size={20} />
+                ) : (
+                  <BsChevronDown size={20} />
+                )}
+              </button>
             </div>
-            <h5 className="text-black dark:text-white">
+
+            <h5 className="text-sm text-gray-600 dark:text-gray-300">
               {sectionVideoCount} Lessons ·{" "}
               {sectionVideoLength < 60
                 ? sectionVideoLength
                 : sectionContentHours.toFixed(2)}{" "}
               {sectionVideoLength > 60 ? "hours" : "minutes"}
             </h5>
-            <br />
+
             {isSectionVisible && (
-              <div className="w-full">
+              <div className="w-full mt-2 space-y-1">
                 {sectionVideos.map((item: any, index: number) => {
-                  const videoIndex: number = sectionStartIndex + index; 
+                  const videoIndex: number = sectionStartIndex + index;
                   const contentLength: number = item.videoLength / 60;
+                  const isActive = videoIndex === props.activeVideo;
+
                   return (
                     <div
-                      className={`w-full ${
-                        videoIndex === props.activeVideo ? "bg-slate-800" : ""
-                      } cursor-pointer transition-all p-2`}
                       key={item._id}
-                      onClick={() => props.isDemo ? null : props?.setActiveVideo(videoIndex)}
+                      onClick={() =>
+                        props.isDemo ? null : props?.setActiveVideo(videoIndex)
+                      }
+                      className={`flex flex-col rounded-lg p-3 cursor-pointer transition-all
+                        ${
+                          isActive
+                            ? "bg-[#6abfc1] text-white"
+                            : "bg-gray-100 dark:bg-gray-800 text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+                        }`}
                     >
-                      <div className="flex items-start">
-                        <div>
-                          <MdOutlineOndemandVideo
-                            size={25}
-                            className="mr-2"
-                            color="#1cdada"
-                          />
-                        </div>
-                        <h1 className="text-[18px] inline-block break-words text-black dark:text-white">
+                      <div className="flex items-center">
+                        <MdOutlineOndemandVideo
+                          size={22}
+                          className="mr-2 flex-shrink-0"
+                          color={isActive ? "#fff" : "#1cdada"}
+                        />
+                        <h1
+                          className={`text-[16px] font-medium break-words ${
+                            isActive ? "text-white" : "text-black dark:text-white"
+                          }`}
+                        >
                           {item.title}
                         </h1>
                       </div>
-                      <h5 className="pl-8 text-black dark:text-white">
-                        {item.videoLength > 60 ? contentLength.toFixed(2) : item.videoLength}{" "}
+                      <h5
+                        className={`pl-8 text-sm ${
+                          isActive
+                            ? "text-gray-200"
+                            : "text-gray-600 dark:text-gray-400"
+                        }`}
+                      >
+                        {item.videoLength > 60
+                          ? contentLength.toFixed(2)
+                          : item.videoLength}{" "}
                         {item.videoLength > 60 ? "hours" : "minutes"}
                       </h5>
                     </div>

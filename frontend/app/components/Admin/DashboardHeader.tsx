@@ -28,7 +28,7 @@ const DashboardHeader: FC<Props> = ({ open = false, setOpen }) => {
   const [audio] = useState(
     typeof window !== "undefined"
       ? new Audio(
-          "https://res.cloudinary.com/damk25wo5/video/upload/v1693465789/notification_vcetjn.mp3"
+          "https://assets.mixkit.co/sfx/preview/mixkit-bell-notification-933.mp3"
         )
       : null
   );

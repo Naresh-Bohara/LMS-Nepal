@@ -5,12 +5,12 @@
   "type": "commonjs",
   "main": "build/server.js",
   "engines": {
-    "node":"18.x"
+    "node": "18.x"
   },
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only server.ts",
-    "start":"node build/server.js",    
-    "build":"tsc"
+    "start": "node build/server.js",
+    "build": "tsc"
   },
   "author": "EC & SPM Project",
   "license": "ISC",
@@ -23,13 +23,15 @@
     "@types/node": "^20.4.0",
     "@types/socket.io": "^3.0.2",
     "@types/validator": "^13.7.17",
-    "axios": "^1.4.0",
+    "axios": "^1.11.0",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.39.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
+    "esewajs": "^2.0.0",
     "express": "^4.18.2",
     "express-rate-limit": "^6.10.0",
     "ioredis": "^5.3.2",
@@ -40,7 +42,8 @@
     "socket.io": "^4.7.2",
     "stripe": "^13.3.0",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/ejs": "^3.1.2",

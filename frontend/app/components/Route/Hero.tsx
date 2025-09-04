@@ -95,35 +95,47 @@ const Hero: FC<Props> = () => {
                 </button>
               </div>
 
-              {/* Trusted Users */}
-              <div className="mt-10 flex items-center gap-2 1100px:w-[78%] 1500px:w-[55%] animate-fadeInUp delay-500">
-                <div className="flex -space-x-4">
-                  <Image
-                    src={require("../../../public/assests/client-1.jpg")}
-                    alt=""
-                    className="rounded-full border-2 border-white dark:border-gray-800 w-10 h-10 object-cover shadow-md"
-                  />
-                  <Image
-                    src={require("../../../public/assests/client-2.jpg")}
-                    alt=""
-                    className="rounded-full border-2 border-white dark:border-gray-800 w-10 h-10 object-cover shadow-md"
-                  />
-                  <Image
-                    src={require("../../../public/assests/client-3.jpg")}
-                    alt=""
-                    className="rounded-full border-2 border-white dark:border-gray-800 w-10 h-10 object-cover shadow-md"
-                  />
-                </div>
-                <p className="font-Josefin text-[16px] font-medium pl-3 text-[#000000b3] dark:text-[#edfff4]">
-                  500K+ people already trust us.{" "}
-                  <Link
-                    href="/courses"
-                    className="text-[#4ea6a9] hover:underline hover:text-[#3a8d8f] transition-colors"
-                  >
-                    View Courses
-                  </Link>
-                </p>
-              </div>
+             {/* Trusted Users */}
+<div className="mt-10 flex items-center gap-2 1100px:w-[78%] 1500px:w-[55%] animate-fadeInUp delay-500">
+  <div className="flex -space-x-4">
+    <Link href="https://naresh-bohara.com.np" target="_blank" rel="noopener noreferrer">
+      <Image
+        src="https://naresh-bohara.com.np/assets/logo3-O_p_glfc.jpg"
+        alt="Trusted Logo"
+        width={40}
+        height={40}
+        className="rounded-full border-2 border-white dark:border-gray-800 object-cover shadow-md"
+        unoptimized
+      />
+    </Link>
+
+    <Image
+      src="/assests/client-2.jpg"
+      alt="Client 2"
+      width={40}
+      height={40}
+      className="rounded-full border-2 border-white dark:border-gray-800 object-cover shadow-md"
+    />
+    <Image
+      src="/assests/client-3.jpg"
+      alt="Client 3"
+      width={40}
+      height={40}
+      className="rounded-full border-2 border-white dark:border-gray-800 object-cover shadow-md"
+    />
+  </div>
+
+  <p className="font-Josefin text-[16px] font-medium pl-3 text-[#000000b3] dark:text-[#edfff4]">
+    5000+ people already trust us.{" "}
+    <Link
+      href="/courses"
+      className="text-[#4ea6a9] hover:underline hover:text-[#3a8d8f] transition-colors"
+    >
+      View Courses
+    </Link>
+  </p>
+</div>
+
             </div>
           </div>
         </section>
